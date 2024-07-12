@@ -20,6 +20,26 @@ def add_new_tile(matrix):
 
 def compress(matrix):
     new_mat = []
-    for i in range(4):
+    for _ in range(4):
         new_mat.append([0] * 4)
-print(initialize_board())
+    for i in range(4):
+        pos = 0
+        for j in range(4):
+            if matrix[i][j] != 0:
+                new_mat[i][pos] = matrix[i][j]
+                pos += 1
+    return new_mat
+
+def merge(matrix):
+        for i in range(4):
+            for j in range(3):
+                if matrix[i][j] == matrix[i][j+1] and matrix[i][j] != 0:
+                    matrix[i][j] *= 2
+                    matrix[i][j+1] = 0
+        return matrix
+
+board = initialize_board()
+print(board)
+compressed_board = compress(board)
+print(compressed_board)
+print(merge(compressed_board))
